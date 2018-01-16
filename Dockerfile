@@ -1,9 +1,8 @@
 FROM resin/rpi-raspbian
 
-RUN apt-get update && apt-get install build-essential git cmake libudev-dev libxrandr-dev python-dev swig pkg-config libraspberrypi0 libraspberrypi-dev libraspberrypi-doc libraspberrypi-bin
+RUN apt-get update && apt-get install build-essential git cmake libudev-dev libxrandr-dev python-dev pkg-config libraspberrypi0 libraspberrypi-dev libraspberrypi-doc libraspberrypi-bin
 RUN git clone https://github.com/Pulse-Eight/libcec.git
 WORKDIR /libcec
-RUN apt-get purge swig2.0
 RUN git submodule update --init
 WORKDIR src/platform
 RUN mkdir build && cd build && cmake .. && make -j4 && make install
